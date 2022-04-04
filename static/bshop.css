@@ -274,3 +274,7 @@ input[type=checkbox]:checked + span::after{
 .blacking {
     background-color: rgba(21, 21, 21, .2);
 }
+.admin_table {
+    max-width: 100%;
+    overflow-x: auto;
+}

@@ -2,3 +2,4 @@ flask
 flask-login
 Flask-SQLAlchemy
 Jinja2
+flask-migrate

@@ -14,3 +14,8 @@
 
 ## Сборка:
 1. Установить библиотеки с помощью `pip install -r requirements.txt`
+
+
+## ЗАПУСК:
+1. `set FLASK_APP=__init__.py`
+2. `flask run`

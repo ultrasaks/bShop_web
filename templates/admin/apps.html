@@ -1,0 +1,34 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block apps_chose %}chosed_link{% endblock %}
+
+{% block admcontent %}
+    <h1>Apps</h1>
+    <div class="center_content">
+    <div class="dark_card col-md-11 admin_table">
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Is_published</td>
+                <td>Downloads</td>
+                <td>Publisher_id</td>
+                <td>Tags</td>
+                <td>Version</td>
+            </tr>
+        </thead>
+        {% for app in apps_list %}
+            <tr>
+                <td>{{ app.id }}</td>
+                <td><a href="#">{{ app.name }}</a></td>
+                <td>{{ app.is_published }}</td>
+                <td>{{ app.downloads }}</td>
+                <td><a href="{{ url_for('admin.get_user') }}?id={{ app.publisher }}">{{ app.publisher }}</a></td>
+                <td>{{ app.tags }}</td>
+                <td>{{ app.version }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div></div>
+{% endblock %}

@@ -2,12 +2,13 @@
 {% block content %}
     <div class="center_content">
         <div class="dark_card">
-            <a class="light_link {% block users_chose %}{% endblock %}" href="{{ url_for('diag.users') }}">Users</a>
-            <a class="light_link {% block apps_chose %}{% endblock %}">Apps</a>
+            <a class="light_link {% block users_chose %}{% endblock %}" href="{{ url_for('admin.users') }}">Users</a>
+            <a class="light_link {% block apps_chose %}{% endblock %}" href="{{ url_for('admin.apps') }}">Apps</a>
             <a class="light_link {% block review_chose %}{% endblock %}">Unreviewed<b style="color: #EB7A72">(15)</b></a>
         </div>
     </div>
     <div class="px-4">
+    <br>
     {% block admcontent %}
     {% endblock %}
     </div>

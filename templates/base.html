@@ -6,6 +6,10 @@
     {% else %}
         <title>bShop</title>
     {% endif %}
+	<link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+	<link rel="stylesheet" href="/static/waves.min.css">
+	<link href="/static/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/bshop.css" rel="stylesheet">
 </head>
 
 <body class="dark_page">
@@ -13,7 +17,7 @@
     <nav class="nav navbar_dark center_content navbar-expand">
         <ul class="navbar-nav bd-navbar-nav flex-row">
         <li class="nav-item"> <a href="/" class="nav-link">
-            <img src="{{ url_for('static', filename='bshop.svg') }}" style="height: 3rem" class="navbar-brand">
+            <img src="/static/bshop.svg" style="height: 3rem" class="navbar-brand">
         </a></li>
         {% if current_user.is_authenticated %}
             <li class="nav-item"><a class="light_navlink waves-effect waves-light"><span class="ti ti-home ti-2x"></span></a></li>
@@ -37,9 +41,6 @@
 </body>
 
 
-<link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">
-<link rel="stylesheet" href="{{ url_for('static', filename='waves.min.css') }}">
-<link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ url_for('static', filename='bshop.css') }}" rel="stylesheet">
-<script src="{{ url_for('static', filename='waves.min.js') }}"></script>
-<script src="{{ url_for('static', filename='init.js') }}"></script>
+
+<script src="/static/waves.min.js"></script>
+<script src="/static/init.js"></script>

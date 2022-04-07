@@ -25,7 +25,7 @@ def create_app():
 
     from .auth import auth as auth_blueprint
     from .main import main as main_blueprint
-    from .diag import diag as diag_blueprint
+    from .admin import admin as diag_blueprint
 
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(main_blueprint)

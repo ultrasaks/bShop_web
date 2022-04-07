@@ -31,7 +31,7 @@ class App(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     description = db.Column(db.String(3000))
-    date_published = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    date_published = db.Column(db.DateTime, index=True, default=datetime.utcnow, nullable=True)
     publisher = db.Column(db.Integer)
     version = db.Column(db.String(10))
     weight = db.Column(db.String(20))

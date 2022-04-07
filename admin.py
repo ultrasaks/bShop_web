@@ -3,7 +3,7 @@ from . import db
 from .models import App, User
 from flask_login import current_user, login_required
 
-diag = Blueprint('diag', __name__, url_prefix='/admin')
+admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 
 def is_admin(cu):
@@ -13,13 +13,13 @@ def is_admin(cu):
     return False
 
 
-@diag.route('/components')
+@admin.route('/components')
 def components():
     return render_template('components.html')
 
 
 @login_required
-@diag.route('/')
+@admin.route('/')
 def admin_panel():
     if not is_admin(current_user):
         return redirect(url_for('main.index'))
@@ -27,7 +27,7 @@ def admin_panel():
 
 
 @login_required
-@diag.route('/users')
+@admin.route('/users')
 def users():
     if not is_admin(current_user):
         return redirect(url_for('main.index'))
@@ -36,7 +36,7 @@ def users():
 
 
 @login_required
-@diag.route('/user')
+@admin.route('/user')
 def get_user():
     if not is_admin(current_user):
         return redirect(url_for('main.index'))
@@ -46,20 +46,41 @@ def get_user():
 
 
 @login_required
-@diag.route('/user', methods=['POST'])
+@admin.route('/apps')
+def apps():
+    if not is_admin(current_user):
+        return redirect(url_for('main.index'))
+    apps_list = App.query.order_by(App.id)
+    return render_template('admin/apps.html', apps_list=apps_list)
+
+
+# @login_required
+# @admin.route('/app')
+# def get_app():
+#     if not is_admin(current_user):
+#         return redirect(url_for('main.index'))
+#     app_id = request.args.get('id')
+#     app = App.query.get(app_id)
+#     return render_template('admin/getapp.html', app=app)
+
+
+# POST-запросы
+@login_required
+@admin.route('/user', methods=['POST'])
 def post_user():
     if not is_admin(current_user):
         return redirect(url_for('main.index'))
     user_id = request.args.get('id')
     user = User.query.get(user_id)
 
-    user.name = request.form.get('name')
-    user.email = request.form.get('email')
-    user.apps = eval(request.form.get('apps'))
-    user.favourites = eval(request.form.get('favourites'))
-    user.is_admin = True if request.form.get('is_admin') else False
-    user.is_banned = True if request.form.get('is_banned') else False
-    db.session.add(user)
-    db.session.commit()
+    if int(user_id) != 1:
+        user.name = request.form.get('name')
+        user.email = request.form.get('email')
+        user.apps = eval(request.form.get('apps'))
+        user.favourites = eval(request.form.get('favourites'))
+        user.is_admin = True if request.form.get('is_admin') else False
+        user.is_banned = True if request.form.get('is_banned') else False
+        db.session.add(user)
+        db.session.commit()
 
     return render_template('admin/getuser.html', user=user)

@@ -1,14 +1,14 @@
 {% extends 'admin/adminbase.html' %}
 
-{% block users_chose %}chosed_link{% endblock %}
+{% block apps_chose %}chosed_link{% endblock %}
 
 {% block admcontent %}
     <div class="center_content py-4">
         <div class="col-md-5 dark_card p-3 card_downflex" style="min-width: 30%">
-            <h1>id{{ user.id }}</h1>
-        <form method="POST" action="/admin/user?id={{ user.id }}">
+            <h1>id{{ app.id }}</h1>
+        <form method="POST" action="/admin/app?id={{ app.id }}">
             <label for="name" class="thin_text">Name</label>
-            <input class="lineedit_outline" value="{{ user.name }}" type="text" name="name" autofocus="" style="width: 100%"><br><br>
+            <input class="lineedit_outline" value="{{ app.name }}" type="text" name="name" autofocus="" style="width: 100%"><br><br>
             <label for="email" class="thin_text">Email</label>
             <input class="lineedit_outline" value="{{ user.email }}" type="email" name="email" autofocus="" style="width: 100%"><br><br>
             <label for="apps" class="thin_text">Apps</label>
@@ -17,7 +17,7 @@
             <input class="lineedit_outline" value="{{ user.favourites }}" type="text" name="favourites" autofocus="" style="width: 100%"><br><br>
             <table width="30%">
                     <tr>
-                        <td><input type="checkbox" id="is_admin" name="is_admin" {% if user.is_admin %}checked{% endif %}><span></span></td>
+                        <td><input type="checkbox" id="is_published" name="is_published" {% if app.is_published %}checked{% endif %}><span></span></td>
                         <td><label for="is_admin" class="py-0">Admin</label></td>
                     </tr>
                     <tr>

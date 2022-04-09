@@ -42,3 +42,6 @@ class App(db.Model):
     download_link = db.Column(db.String(3000))
     is_published = db.Column(db.Boolean, default=False)
     downloads = db.Column(db.Integer, default=0)
+
+    def broken(self):
+        return self.description.split('\n')

@@ -4,7 +4,6 @@ from flask_login import current_user, login_required
 from .models import App
 from werkzeug.exceptions import HTTPException
 
-
 main = Blueprint('main', __name__)
 
 
@@ -25,15 +24,15 @@ def profile():
 def create_post_app():
     app = App()
 
-    app.name = request.form.get('name')
-    app.description = request.form.get('description')
+    form = request.form
+    app.name = form.get('name')
+    app.description = form.get('description')
     app.publisher = current_user.id
-    app.version = request.form.get('version')
-    app.tags = request.form.get('tags')
-    app.screenshots = request.form.get('screenshots')
-    app.big_icon = request.form.get('big_icon')
-    app.small_icon = request.form.get('small_icon')
-    app.is_published = False
+    app.version = form.get('version')
+    app.tags = form.get('tags').split(',')
+    app.screenshots = form.get('screenshots').split(',')
+    app.big_icon = form.get('big_icon')
+    app.small_icon = form.get('small_icon')
     db.session.add(app)
     db.session.commit()
 
@@ -44,6 +43,7 @@ def create_post_app():
 @main.route('/createapp')
 def create_app():
     return render_template('createapp.html')
+
 
 @main.route('/app/<id>')
 def get_app(id):

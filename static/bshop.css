@@ -154,6 +154,7 @@ a {
     color: #F0F0F0;
     -webkit-transition-duration: 0.17s;
     transition-duration: 0.17s;
+    resize: none;
 }
 .lineedit_outline:focus {
     outline: none;

@@ -3,17 +3,18 @@
 {% block content %}
     <div class="center_content py-4">
         <div class="col-md-5 dark_card p-3 card_downflex" style="min-width: 30%">
-            <h1>Create App</h1>
+            <h1>Publish your app</h1>
         <form method="POST" action="/createapp">
+            <i>* — separate with <b class="chosed_link">&nbsp;&nbsp;,&nbsp;&nbsp;</b></i><br><br>
             <label for="name" class="thin_text">Name</label>
             <input class="lineedit_outline" type="text" name="name" id="name" autofocus="" style="width: 100%"><br><br>
             <label for="description" class="thin_text">Description</label>
-            <input class="lineedit_outline" type="text" name="description" id="description" autofocus="" style="width: 100%"><br><br>
+            <textarea class="lineedit_outline" type="text" name="description" id="description" rows="7" autofocus="" style="width: 100%"></textarea><br><br>
             <label for="version" class="thin_text">Version</label>
             <input class="lineedit_outline" type="text" name="version" id="version" autofocus="" style="width: 100%"><br><br>
-            <label for="tags" class="thin_text">Tags</label>
+            <label for="tags" class="thin_text">Tags*</label>
             <input class="lineedit_outline" type="text" name="tags" id="tags" autofocus="" style="width: 100%"><br><br>
-            <label for="screenshots" class="thin_text">Screenshots</label>
+            <label for="screenshots" class="thin_text">Screenshots*</label>
             <input class="lineedit_outline" type="text" name="screenshots" id="screenshots" autofocus="" style="width: 100%"><br><br>
             <label for="big_icon" class="thin_text">Big icon</label>
             <input class="lineedit_outline" type="text" name="big_icon" id="big_icon" autofocus="" style="width: 100%"><br><br>

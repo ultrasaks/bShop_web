@@ -10,7 +10,7 @@
             <label for="name" class="thin_text">Name</label>
             <input class="lineedit_outline" value="{{ app.name }}" type="text" name="name" id="name" autofocus="" style="width: 100%"><br><br>
             <label for="description" class="thin_text">Description</label>
-            <input class="lineedit_outline" value="{{ app.description }}" type="text" name="description" id="description" autofocus="" style="width: 100%"><br><br>
+            <textarea class="lineedit_outline" type="text" name="description" id="description" rows="7" style="width: 100%">{{ app.description }}</textarea><br><br>
             <label for="publisher" class="thin_text">Publisher</label>
             <input class="lineedit_outline" value="{{ app.publisher }}" type="text" name="publisher" id="publisher" autofocus="" style="width: 100%"><br><br>
             <label for="version" class="thin_text">Version</label>

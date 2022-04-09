@@ -36,12 +36,11 @@ a {
 .mysh_btn_outline {
     background-color: transparent;
     border-radius: 3px;
-    border: 0.1rem #1A1A1C;
+    border: 0.1rem #1A1A1C solid;
     padding: 0.5rem;
     color: #151515;
     -webkit-transition-duration: 0.17s;
     transition-duration: 0.17s;
-    border-style: solid;
 }
 .mysh_btn_outline:hover {
     background-color: rgba(21, 21, 21, .08);
@@ -56,9 +55,8 @@ a {
     background-color: #9A9EA5;
 }
 .light_outline {
-    border: 0.1rem #CCD2DA;
+    border: 0.1rem #CCD2DA solid;
     color: #CCD2DA;
-    border-style: solid;
 }
 .light_outline:hover {
     background-color: rgba(154, 158, 160, .08);
@@ -100,6 +98,7 @@ a {
     padding: 1rem .8rem 1rem;
     height: 100%;
     vertical-align: middle;
+	border-radius: 3px;
 }
 .light_link:hover, .light_link:focus {
     color: #FAFAFA;
@@ -108,7 +107,9 @@ a {
     background-color: rgba(0, 0, 0, .08);
 }
 .chosed_link {
-    background-color: rgba(0, 0, 0, .20);
+	background-color: rgba(0, 0, 0, .20);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 20%);
+    border-radius: 3px;
 }
 .center_content {
     display: flex;
@@ -277,4 +278,13 @@ input[type=checkbox]:checked + span::after{
 .admin_table {
     max-width: 100%;
     overflow-x: auto;
+}
+.app_image {
+    border-radius: 7px;
+    background-color: #27282B;
+}
+.big_text {
+    border-radius: 2px;
+    background-color: #27282B;
+    padding: 0.4rem;
 }

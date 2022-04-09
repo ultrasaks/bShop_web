@@ -8,21 +8,27 @@
             <h1>id{{ app.id }}</h1>
         <form method="POST" action="/admin/app?id={{ app.id }}">
             <label for="name" class="thin_text">Name</label>
-            <input class="lineedit_outline" value="{{ app.name }}" type="text" name="name" autofocus="" style="width: 100%"><br><br>
-            <label for="email" class="thin_text">Email</label>
-            <input class="lineedit_outline" value="{{ user.email }}" type="email" name="email" autofocus="" style="width: 100%"><br><br>
-            <label for="apps" class="thin_text">Apps</label>
-            <input class="lineedit_outline" value="{{ user.apps }}" type="text" name="apps" autofocus="" style="width: 100%"><br><br>
-            <label for="favourites" class="thin_text">Favourites</label>
-            <input class="lineedit_outline" value="{{ user.favourites }}" type="text" name="favourites" autofocus="" style="width: 100%"><br><br>
+            <input class="lineedit_outline" value="{{ app.name }}" type="text" name="name" id="name" autofocus="" style="width: 100%"><br><br>
+            <label for="description" class="thin_text">Description</label>
+            <input class="lineedit_outline" value="{{ app.description }}" type="text" name="description" id="description" autofocus="" style="width: 100%"><br><br>
+            <label for="publisher" class="thin_text">Publisher</label>
+            <input class="lineedit_outline" value="{{ app.publisher }}" type="text" name="publisher" id="publisher" autofocus="" style="width: 100%"><br><br>
+            <label for="version" class="thin_text">Version</label>
+            <input class="lineedit_outline" value="{{ app.version }}" type="text" name="version" id="version" autofocus="" style="width: 100%"><br><br>
+            <label for="tags" class="thin_text">Tags</label>
+            <input class="lineedit_outline" value="{{ app.tags }}" type="text" name="tags" id="tags" autofocus="" style="width: 100%"><br><br>
+            <label for="weight" class="thin_text">Weight</label>
+            <input class="lineedit_outline" value="{{ app.weight }}" type="text" name="weight" id="weight" autofocus="" style="width: 100%"><br><br>
+            <label for="screenshots" class="thin_text">Screenshots</label>
+            <input class="lineedit_outline" value="{{ app.screenshots }}" type="text" name="screenshots" id="screenshots" autofocus="" style="width: 100%"><br><br>
+            <label for="big_icon" class="thin_text">Big icon</label>
+            <input class="lineedit_outline" value="{{ app.big_icon }}" type="text" name="big_icon" id="big_icon" autofocus="" style="width: 100%"><br><br>
+            <label for="small_icon" class="thin_text">Small icon</label>
+            <input class="lineedit_outline" value="{{ app.small_icon }}" type="text" name="small_icon" id="small_icon" autofocus="" style="width: 100%"><br><br>
             <table width="30%">
                     <tr>
                         <td><input type="checkbox" id="is_published" name="is_published" {% if app.is_published %}checked{% endif %}><span></span></td>
-                        <td><label for="is_admin" class="py-0">Admin</label></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" id="is_banned" name="is_banned" {% if user.is_banned %}checked{% endif %}><span></span></td>
-                        <td><label for="is_admin" class="py-0">Banned</label></td>
+                        <td><label for="is_published" class="py-0">Published</label></td>
                     </tr>
                 </table><br>
         <button class="mysh_btn light_btn" style="width: 30%">Save</button>

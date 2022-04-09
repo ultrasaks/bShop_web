@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="center_content py-4">
+        <div class="col-md-5 dark_card p-3 card_downflex" style="min-width: 30%">
+            <h1>Create App</h1>
+        <form method="POST" action="/createapp">
+            <label for="name" class="thin_text">Name</label>
+            <input class="lineedit_outline" type="text" name="name" id="name" autofocus="" style="width: 100%"><br><br>
+            <label for="description" class="thin_text">Description</label>
+            <input class="lineedit_outline" type="text" name="description" id="description" autofocus="" style="width: 100%"><br><br>
+            <label for="version" class="thin_text">Version</label>
+            <input class="lineedit_outline" type="text" name="version" id="version" autofocus="" style="width: 100%"><br><br>
+            <label for="tags" class="thin_text">Tags</label>
+            <input class="lineedit_outline" type="text" name="tags" id="tags" autofocus="" style="width: 100%"><br><br>
+            <label for="screenshots" class="thin_text">Screenshots</label>
+            <input class="lineedit_outline" type="text" name="screenshots" id="screenshots" autofocus="" style="width: 100%"><br><br>
+            <label for="big_icon" class="thin_text">Big icon</label>
+            <input class="lineedit_outline" type="text" name="big_icon" id="big_icon" autofocus="" style="width: 100%"><br><br>
+            <label for="small_icon" class="thin_text">Small icon</label>
+            <input class="lineedit_outline" type="text" name="small_icon" id="small_icon" autofocus="" style="width: 100%"><br><br>
+            <label for="download_link" class="thin_text">Download link</label>
+            <input class="lineedit_outline" type="text" name="download_link" id="download_link" autofocus="" style="width: 100%"><br><br>
+        <button class="mysh_btn light_btn" style="width: 30%">Create</button>
+        </form>
+        </div>
+    </div>
+{% endblock %}

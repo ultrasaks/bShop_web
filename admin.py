@@ -54,14 +54,38 @@ def apps():
     return render_template('admin/apps.html', apps_list=apps_list)
 
 
-# @login_required
-# @admin.route('/app')
-# def get_app():
-#     if not is_admin(current_user):
-#         return redirect(url_for('main.index'))
-#     app_id = request.args.get('id')
-#     app = App.query.get(app_id)
-#     return render_template('admin/getapp.html', app=app)
+@login_required
+@admin.route('/app')
+def get_app():
+    if not is_admin(current_user):
+        return redirect(url_for('main.index'))
+    app_id = request.args.get('id')
+    app = App.query.get(app_id)
+    return render_template('admin/getapp.html', app=app)
+
+
+@login_required
+@admin.route('/app', methods=['POST'])
+def post_app():
+    if not is_admin(current_user):
+        return redirect(url_for('main.index'))
+    app_id = request.args.get('id')
+    app = App.query.get(app_id)
+
+    app.name = request.form.get('name')
+    app.description = request.form.get('description')
+    app.publisher = request.form.get('publisher')
+    app.version = request.form.get('version')
+    app.weight = request.form.get('weight')
+    app.tags = request.form.get('tags')
+    app.screenshots = request.form.get('screenshots')
+    app.big_icon = request.form.get('big_icon')
+    app.small_icon = request.form.get('small_icon')
+    app.is_published = True if request.form.get('is_published') else False
+    db.session.add(app)
+    db.session.commit()
+
+    return render_template('admin/getapp.html', app=app)
 
 
 # POST-запросы
@@ -84,3 +108,34 @@ def post_user():
         db.session.commit()
 
     return render_template('admin/getuser.html', user=user)
+
+
+@login_required
+@admin.route('/createapp', methods=['POST'])
+def create_post_app():
+    if not is_admin(current_user):
+        return redirect(url_for('main.index'))
+    app = App()
+
+    app.name = request.form.get('name')
+    app.description = request.form.get('description')
+    app.publisher = request.form.get('publisher')
+    app.version = request.form.get('version')
+    app.weight = request.form.get('weight')
+    app.tags = request.form.get('tags')
+    app.screenshots = request.form.get('screenshots')
+    app.big_icon = request.form.get('big_icon')
+    app.small_icon = request.form.get('small_icon')
+    app.is_published = True if request.form.get('is_published') else False
+    db.session.add(app)
+    db.session.commit()
+
+    return render_template('admin/getapp.html', app=app)
+
+
+@login_required
+@admin.route('/createapp')
+def create_app():
+    if not is_admin(current_user):
+        return redirect(url_for('main.index'))
+    return render_template('admin/createapp.html')

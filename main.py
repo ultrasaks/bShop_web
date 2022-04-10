@@ -9,51 +9,13 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title='Home')
 
 
 @login_required
 @main.route('/profile')
 def profile():
-    return render_template('profile.html')
-
-
-
-@login_required
-@main.route('/createapp', methods=['POST'])
-def create_post_app():
-    app = App()
-
-    form = request.form
-    app.name = form.get('name')
-    app.description = form.get('description')
-    app.publisher = current_user.id
-    app.version = form.get('version')
-    app.tags = form.get('tags').split(',')
-    app.screenshots = form.get('screenshots').split(',')
-    app.big_icon = form.get('big_icon')
-    app.small_icon = form.get('small_icon')
-    db.session.add(app)
-    db.session.commit()
-
-    return redirect(url_for('main.index'))
-
-
-@login_required
-@main.route('/createapp')
-def create_app():
-    return render_template('createapp.html')
-
-
-@main.route('/app/<id>')
-def get_app(id):
-    app = App.query.filter_by(id=id).first()
-    if not app:
-        abort(404)
-    if not app.is_published:
-        if current_user.is_anonymous or current_user.id != app.publisher:
-            abort(403)
-    return render_template('app.html', app=app)
+    return render_template('profile.html', title='Profile')
 
 
 @main.app_errorhandler(Exception)
@@ -64,4 +26,4 @@ def error(e):
     if code == 500:
         print(e)
         e = 'Internal server error'
-    return render_template('errors/404.html', code=code, e=e)
+    return render_template('errors/404.html', code=code, e=e, title='Something went wrong')

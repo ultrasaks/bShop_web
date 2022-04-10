@@ -1,0 +1,10 @@
+{% extends 'apps/librbase.html' %}
+{% block lib %}chosed_link{% endblock %}
+{% block libcontent %}
+    <div class="center_content">
+    <div class="col-md-7 px-2 py-3" style="min-width: 70%;">
+{% for app in apps_list %}
+    {% include '_app.html' %}
+    {% endfor %}
+    </div></div>
+{% endblock %}

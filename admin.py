@@ -15,7 +15,7 @@ def is_admin(cu):
 
 @admin.route('/components')
 def components():
-    return render_template('components.html')
+    return render_template('components.html', title='Components test')
 
 
 @login_required
@@ -23,7 +23,7 @@ def components():
 def admin_panel():
     if not is_admin(current_user):
         abort(403)
-    return render_template('admin/adminbase.html')
+    return render_template('admin/adminbase.html', title='Admin')
 
 
 @login_required
@@ -32,7 +32,7 @@ def users():
     if not is_admin(current_user):
         abort(403)
     users_list = User.query.order_by(User.id)
-    return render_template('admin/users.html', users_list=users_list)
+    return render_template('admin/users.html', users_list=users_list, title='Users')
 
 
 @login_required
@@ -42,7 +42,7 @@ def get_user():
         abort(403)
     user_id = request.args.get('id')
     user = User.query.get(user_id)
-    return render_template('admin/getuser.html', user=user)
+    return render_template('admin/getuser.html', user=user, title=user.name)
 
 
 @login_required
@@ -51,7 +51,7 @@ def apps():
     if not is_admin(current_user):
         abort(403)
     apps_list = App.query.order_by(App.id)
-    return render_template('admin/apps.html', apps_list=apps_list)
+    return render_template('admin/apps.html', apps_list=apps_list, title='Apps')
 
 
 @login_required
@@ -60,7 +60,7 @@ def unreviewed():
     if not is_admin(current_user):
         abort(403)
     apps_list = App.query.order_by(App.id).filter_by(is_published=False)
-    return render_template('admin/unreviewed.html', apps_list=apps_list)
+    return render_template('admin/unreviewed.html', apps_list=apps_list, title='Unreviewed')
 
 
 @login_required
@@ -70,14 +70,14 @@ def get_app():
         abort(403)
     app_id = request.args.get('id')
     app = App.query.get(app_id)
-    return render_template('admin/getapp.html', app=app)
+    return render_template('admin/getapp.html', app=app, title='Pre-publish')
 
 @login_required
 @admin.route('/createapp')
 def create_app():
     if not is_admin(current_user):
         abort(403)
-    return render_template('admin/createapp.html')
+    return render_template('admin/createapp.html', title='Create an app')
 
 # POST-запросы
 @login_required
@@ -126,8 +126,6 @@ def post_user():
         db.session.commit()
 
     return render_template('admin/getuser.html', user=user)
-
-
 
 
 @login_required

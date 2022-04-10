@@ -8,7 +8,13 @@
                     <h1>{{ app.name }}</h1>
                     <b>4.7/5.0</b><br><br>
                     <div style="position: absolute;right: 0rem; bottom: 0">
-                        <button class="mysh_btn light_btn" style="padding-left: 1.7rem;padding-right: 1.7rem;">Download</button></div>
+                        {% if current_user.is_authenticated and app.is_published %}
+                            {% if app.id not in current_user.library %}
+                                <a href="/apps/add/{{ app.id }}" class="mysh_btn light_btn" style="padding-left: 1.7rem;padding-right: 1.7rem;">Add to library</a>
+                            {% else %}
+                                <a href="/apps/add/{{ app.id }}" class="mysh_btn light_btn" style="padding-left: 1.7rem;padding-right: 1.7rem;">Download</a>
+                            {% endif %}
+                        {% endif %}</div>
                     </div>
             </div></div><br>
     </div>
@@ -16,8 +22,4 @@
             <h2>About this app</h2>
             <div class="px-2 big_text">{% for text in app.broken() %}<span>{{ text }}</span><br>{% endfor %}</div>
         </div><br>
-{#    <div style="position: relative" class="col-md-8">#}
-{#    <div style="position: absolute;right: 1rem;">#}
-{#        <button class="mysh_btn light_btn waves-effect waves-effect" style="padding: 1rem 7rem 1rem;">Download</button></div>#}
-{#    </div>#}
 {% endblock %}

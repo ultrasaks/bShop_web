@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
     is_banned = db.Column(db.Boolean, default=False)
     apps = db.Column(db.JSON, default=[])
     favourites = db.Column(db.JSON, default=[])
+    library = db.Column(db.JSON, default=[])
 
     def short_mail(self):
         if len(self.email) > 30:

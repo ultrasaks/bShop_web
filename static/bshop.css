@@ -53,6 +53,7 @@ a {
 }
 .light_btn:hover {
     background-color: #9A9EA5;
+    color: #202124;
 }
 .light_outline {
     border: 0.1rem #CCD2DA solid;
@@ -288,4 +289,15 @@ input[type=checkbox]:checked + span::after{
     border-radius: 2px;
     background-color: #27282B;
     padding: 0.4rem;
+}
+.captcha img{
+    filter: invert();
+    border-radius: 3px;
+}
+.top_menu{
+    max-width: 20rem
+}
+.small_tag, .small_tag:hover {
+    font-size: 60%;
+    color: #C0C0C9;
 }

@@ -1,18 +1,36 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
-from . import db
+from . import db, create_app
 from flask_login import login_user, logout_user, current_user
+from flask_sessionstore import Session
+from flask_session_captcha import FlaskSessionCaptcha
 
 auth = Blueprint('auth', __name__)
+
+# КОЛХОЗ
+app = create_app()
+Session(app)
+captcha = FlaskSessionCaptcha(app)
 
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
-    print(request)
+    if not captcha.validate():
+        flash('Please pass the captcha first')
+        return redirect(url_for('auth.signup'))
+
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
+    rpassword = request.form.get('rpassword')
+
+    if rpassword != password:
+        flash("Passwords doesn't match")
+        return redirect(url_for('auth.signup'))
+    if email is None or name is None or password is None:
+        flash("ты че самый умный")
+        return redirect(url_for('auth.signup'))
 
     user = User.query.filter_by(email=email).first()
     if user:
@@ -47,14 +65,14 @@ def login_post():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-    return render_template('login.html')
+    return render_template('login.html', title='Log in')
 
 
 @auth.route('/signup')
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-    return render_template('signup.html')
+    return render_template('signup.html', title='Sign up')
 
 
 @auth.route('/logout')

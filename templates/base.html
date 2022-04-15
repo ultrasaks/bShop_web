@@ -1,18 +1,30 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="HandheldFriendly" content="true">
+	
+	<link rel="shortcut icon" href="/static/icons/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/static/icons/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/static/icons/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/icons/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/icons/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="/static/icons/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/static/icons/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="/static/icons/apple-touch-icon-152x152.png" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon-180x180.png" />
+	
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
         <title>bShop</title>
     {% endif %}
 	<link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">
-	<link rel="stylesheet" href="/static/waves.min.css">
-	<link href="/static/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/bshop.css" rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/waves.min.css">
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/bshop.css" rel="stylesheet">
 </head>
 {% if current_user.is_authenticated and current_user.is_banned %}
-<center class="py-5"><iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><hr><h1>Your BIOS has been permanently destroyed!</h1></center>
+<center class="py-5"><iframe width="560" height="315" style="max-width: 100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><hr><h1>Your BIOS has been permanently destroyed!</h1></center>
 {% else %}
 <body class="dark_page">
 <header class="pb-4">
@@ -26,10 +38,12 @@
             <li class="nav-item"><a class="light_navlink waves-effect waves-light" href="/apps"><span class="ti ti-layout-grid ti-2x"></span></a></li>
             <li class="nav-item"><a class="light_navlink waves-effect waves-light"><span class="ti ti-search ti-2x"></span></a></li>
             <li class="nav-item dropdown">
-                <a class="light_navlink waves-effect waves-light" href="/logout" data-toggle="dropdown" ><span class="ti ti-user-circle ti-2x"></span></a>
-                <div class="dropdown-menu " >
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                <a class="light_navlink waves-effect waves-light" data-toggle="dropdown" ><span class="ti ti-user-circle ti-2x"></span></a>
+                <div class="dropdown-menu dropdown_dark dropdown-menu-right" >
+                    <a class="dropdown-item item_dark py-2 pb-2" href="/profile">Profile</a>
+                    {% if current_user.is_admin %}<a class="dropdown-item item_dark py-2 pb-2" href="/admin">Admin</a>{% endif %}
+                    <a class="dropdown-item item_dark py-2 pb-2" href="/logout">Logout</a>
+                    <a class="dropdown-item item_dark py-2 pb-2" href="/admin/components">Components</a>
                 </div>
             </li>
             {% else %}
@@ -44,5 +58,9 @@
 {% endif %}
 
 
-<script src="/static/waves.min.js"></script>
-<script src="/static/init.js"></script>
+<script src="/static/js/waves.min.js"></script>
+<script src="/static/js/init.js"></script>
+
+<script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>

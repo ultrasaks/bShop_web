@@ -7,6 +7,16 @@ a {
     color: #3FA7FD;
 }
 
+
+::-webkit-scrollbar {
+  background-color: #34353D;
+}
+::-webkit-scrollbar-thumb {
+  background: #27282E;
+  border-radius: 13px;
+}
+
+
 ::-moz-selection {
     color: #FAFAFA;
     background: #151515;
@@ -95,6 +105,8 @@ a {
 
 }
 .light_link{
+    -webkit-transition-duration: 0.17s;
+    transition-duration: 0.17s;
     color: #FAFAFA;
     padding: 1rem .8rem 1rem;
     height: 100%;
@@ -103,8 +115,6 @@ a {
 }
 .light_link:hover, .light_link:focus {
     color: #FAFAFA;
-    -webkit-transition-duration: 0.17s;
-    transition-duration: 0.17s;
     background-color: rgba(0, 0, 0, .08);
 }
 .chosed_link {
@@ -183,10 +193,11 @@ a {
 .row_AAA {
     overflow: hidden
 }
-
-.card_hoverable:hover {
+.card_hoverable {
     -webkit-transition-duration: 0.17s;
     transition-duration: 0.17s;
+}
+.card_hoverable:hover {
     box-shadow: 0 1px 3px 0 #383B3C;
 }
 .card_img {
@@ -300,4 +311,35 @@ input[type=checkbox]:checked + span::after{
 .small_tag, .small_tag:hover {
     font-size: 60%;
     color: #C0C0C9;
+}
+.dropdown_dark {
+    background-color: #303237;
+    color: #CCD2DA;
+    box-shadow: 0 1px 2px 0 #303237;
+    border: none;
+}
+.item_dark {
+    color: #CCD2DA;
+    transition-duration: 0.17s;
+}
+.item_dark:hover, .item_dark:focus {
+    transition-duration: 0.17s;
+    background-color: #34373C;
+    color: #CCD2DA;
+}
+.absolute_right {
+    position: absolute;
+    right: .2rem;
+}
+.front_card {
+    min-width: 150px;
+    max-width:200px;
+}
+.small_info {
+    font-size: 70%;
+    color: #F1F1F1;
+}
+.download_btn {
+    padding-left: 1.7rem;
+    padding-right: 1.7rem;
 }

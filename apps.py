@@ -46,6 +46,7 @@ def create_post_app():
     app.big_icon = form.get('big_icon')
     app.small_icon = form.get('small_icon')
     app.download_link = form.get('download_link')
+    app.publisher_name = current_user.name
     db.session.add(app)
     db.session.commit()
 
@@ -83,4 +84,7 @@ def add_to_library(app_id):
     user.library = q
     db.session.add(user)
     db.session.commit()
-    return redirect(f'/apps/app/{app_id}')
+    return_to = request.args.get('return_to')
+    if return_to is None:
+        return_to = f'/apps/app/{app_id}'
+    return redirect(return_to)

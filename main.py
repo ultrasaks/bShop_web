@@ -9,7 +9,8 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html', title='Home')
+    new_apps = App.query.order_by(App.id.desc()).filter_by(is_published=True)[:2]
+    return render_template('index.html', title='Home', new_apps=new_apps)
 
 
 @login_required

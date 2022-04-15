@@ -11,13 +11,9 @@
     </div>
     <div class="px-5">
         <h1>New apps</h1>
-        <div class="row px-2">
-            {% for i in [1, 2, 3, 4, 5] %}
-                <div class="card_hoverable p-2 pb-3 col-md" style="min-width: 150px;max-width:200px;padding-top:100%;">
-                    <img src="http://jointprojects.tk/apps/{{ i }}/icon128.png" class="card_img">
-                    <h4>Unknown app</h4>
-                    <span style="font-size: 70%; color: #F1F1F1">unknown publisher &nbsp; 5.6mb</span>
-                </div>
+        <div class="px-2 p-1" style="overflow-x: auto; display: flex;max-width: 100%;">
+            {% for app in new_apps %}
+                {% include 'miniapps/_app_front.html' %}
             {% endfor %}
         <a class="card_hoverable p-2 pb-3 col-md center_content light_text" style="max-width:200px; padding-top:100%;"><i class="ti ti-dots ti-5x"></i></a>
         </div>

@@ -10,9 +10,9 @@
                     <div style="position: absolute;right: 0rem; bottom: 0">
                         {% if current_user.is_authenticated and app.is_published %}
                             {% if app.id not in current_user.library %}
-                                <a href="/apps/add/{{ app.id }}" class="mysh_btn light_btn" style="padding-left: 1.7rem;padding-right: 1.7rem;">Add to library</a>
+                                <a href="/apps/add/{{ app.id }}" class="mysh_btn light_btn download_btn">Add to library</a>
                             {% else %}
-                                <a href="/apps/add/{{ app.id }}" class="mysh_btn light_btn" style="padding-left: 1.7rem;padding-right: 1.7rem;">Download</a>
+                                <a href="{{ app.download_link }}" download="download" class="mysh_btn light_btn download_btn">Download</a>
                             {% endif %}
                         {% endif %}</div>
                     </div>

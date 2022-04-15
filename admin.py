@@ -15,7 +15,8 @@ def is_admin(cu):
 
 @admin.route('/components')
 def components():
-    return render_template('components.html', title='Components test')
+    apps = App.query.order_by(App.id.desc())[:2]
+    return render_template('components.html', title='Components test', apps=apps)
 
 
 @login_required

@@ -8,19 +8,23 @@
         <div class="col-md-7 fake_card align_left">
             <form method="POST" action="/search">
                 <label for="query"></label>
-                <input type="text" class="lineedit_outline form90" id="query" name="query" placeholder="Type something here"{% if query %}value="{{ query }}{% endif %}">
-                <a class="light_link" style="right: .1rem" href="javascript: search_resize();">
+                <input type="text" class="lineedit_outline form90" id="query" name="query" placeholder="Type something here" {% if query %}value="{{ query }}{% endif %}">
+                <label style="padding-top: 1rem;"><a class="light_link" style="right: .1rem" href="javascript: search_resize();">
                     <i class="ti ti-chevrons-down" id="up"></i>
                     <i class="ti ti-chevrons-up link_hidden" id="down"></i>
-                </a>
+                </a></label>
                 <br>
                 <div class="search_hidden" id="search_settings">
                     <br>
                     <label for="tags" class="thin_text">Tags</label><br>
                     <input type="text" class="lineedit_outline form100" id="tags" name="tags" {% if tags %}value="{{ tags }}"{% endif %}><br><br>
-                    <input type="checkbox" id="pc" {% if pc %}checked{% endif %}><span><label for="pc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC</label></span><br><br>
-                    <input type="checkbox" id="android" {% if android %}checked{% endif %}><span><label for="android">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Android</label></span>
+
+                    <input type="checkbox" id="pc" {% if pc %}checked{% endif %} name="pc"><span><label for="pc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC</label></span><br><br>
+
+                    <input type="checkbox" id="android" {% if android %}checked{% endif %} name="android"><span><label for="android">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Android</label></span>
+
                     <br><br>
+
                     <label for="sort">Sort by</label><br>
                     <select class="mysh_select form100" name="sort" id="sort">
                         <option value="0">Name</option>

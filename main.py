@@ -26,15 +26,14 @@ def search():
 
     apps_list = App.query.filter_by(is_published=True)
     if query:
-        pass
         apps_list = apps_list.filter(App.name.contains(query))
     if tags:
         pass
     if platform:
-        if platform and platform != 1:
+        if platform and platform != '1':
             platform = 0
-        pc = True if platform == 0 else False
-        android = True if platform == 1 else False
+        pc = True if platform == '0' else False
+        android = True if platform == '1' else False
 
         apps_list = apps_list.filter_by(platform=platform)
     else:

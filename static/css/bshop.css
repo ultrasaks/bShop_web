@@ -404,8 +404,8 @@ input[type=checkbox]:checked + span::after{
     display: none;
 }
 .fake_card {
-    background-color: #2D2E32;
-    box-shadow: 0 1px 2px 0 #2f3132;
+    background-color: #27282B;
+    box-shadow: 0 1px 2px 0 #27282B;
     border-radius: 3px;
     padding: .6rem
 }

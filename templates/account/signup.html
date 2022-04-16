@@ -20,12 +20,13 @@
         <input class="lineedit_outline" type="password" name="password" placeholder="Password" id="password" style="width: 100%"><br><br>
             <label for="email" class="thin_text">Repeat password</label>
         <input class="lineedit_outline" type="password" placeholder="Repeat password" name="rpassword" id="rpassword" style="width: 100%"><br><br>
-            <i class="captcha">{{ captcha() }}</i> <div class="py-2"><input class="lineedit_outline" type="text" placeholder="Captcha" name="captcha"></div>
-            <br><br>
-        <table width="60%">
+            <i class="captcha">{{ captcha() }}</i> <div class="py-2">
+            <input class="lineedit_outline" type="text" placeholder="Captcha" name="captcha" style="width: 100%"></div>
+            <br>
+        <table width="80%">
             <tr>
                 <td><input type="checkbox" id="is_agree" name="is_agree"><span></span></td>
-                <td><label for="is_agree" class="py-0">I agree with <a href="#">Terms and conditions</a></label></td>
+                <td><label for="is_agree" class="py-0">I agree with <a href="/terms">Terms and conditions</a></label></td>
             </tr>
         </table><br>
 

@@ -1,13 +1,14 @@
-<div class="dark_card card_hoverable p-2">
+<div class="dark_card card_hoverable p-2" style="position: relative">
 
     <div class="col-md-2" style="max-width: 6rem;">
         <a href="/apps/app/{{ app.id }}">
         <img class="app_image" src="{{ app.small_icon }}" alt="{{ app.name }}"></a>
     </div>
     <div class="col-md-4">
-<a class="light_text" href="/apps/app/{{ app.id }}">
-    <h2>{{ app.name }}</h2></a>
+        <a class="light_text" href="/apps/app/{{ app.id }}">
+            <h2>{{ app.name }}</h2>
+        </a>
         {% for tag in app.tags %}<a class="small_tag" href="#">&nbsp;{{ tag }}</a>{% endfor %}
     </div>
-    <div class="absolute_right"><a href="/apps/add/{{ app.id }}?return_to=/apps" class="light_text"><i class="ti ti-square-x ti-2x light_link"></i></a></div>
+    <div class="absolute_right"><a href="/apps/add/{{ app.id }}?return_to=/apps" class="light_text"><i class="ti ti-square-x x2"></i></a></div>
 </div>

@@ -1,5 +1,19 @@
 {% extends 'apps/librbase.html' %}
 {% block mya %}chosed_link{% endblock %}
 {% block libcontent %}
-    <a class="mysh_btn light_btn" href="/apps/createapp">Publish</a>
+    <div class="center_content">
+        <div class="col-md-7 px-2 py-3" style="min-width: 70%;">
+        {% if not apps_list %}
+            <h2>Apps you've published will be displayed here</h2>
+        {% endif %}
+    {% for app in apps_list %}
+        {% include 'miniapps/_app.html' %}<br>
+    {% endfor %}
+    <div>
+        <a class="mysh_btn light_btn" href="/apps/createapp" style="left: 0">Publish an app!</a>
+    </div>
+        </div>
+
+    </div>
+
 {% endblock %}

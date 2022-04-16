@@ -23,12 +23,16 @@
             <input class="lineedit_outline" value="{{ app.weight }}" type="text" name="weight" id="weight" autofocus="" style="width: 100%"><br><br>
             <label for="screenshots" class="thin_text">Screenshots</label>
             <input class="lineedit_outline" value="{{ app.screenshots }}" type="text" name="screenshots" id="screenshots" autofocus="" style="width: 100%"><br><br>
+            <label for="huge_icon" class="thin_text">Huge icon</label>
+            <input class="lineedit_outline" value="{{ app.huge_icon }}" type="text" name="huge_icon" id="huge_icon" autofocus="" style="width: 100%"><br><br>
             <label for="big_icon" class="thin_text">Big icon</label>
             <input class="lineedit_outline" value="{{ app.big_icon }}" type="text" name="big_icon" id="big_icon" autofocus="" style="width: 100%"><br><br>
             <label for="small_icon" class="thin_text">Small icon</label>
             <input class="lineedit_outline" value="{{ app.small_icon }}" type="text" name="small_icon" id="small_icon" autofocus="" style="width: 100%"><br><br>
             <label for="reviews" class="thin_text">Reviews</label>
             <input class="lineedit_outline" value="{{ app.reviews }}" type="text" name="reviews" id="reviews" autofocus="" style="width: 100%"><br><br>
+            <label for="download_link" class="thin_text">Download link</label>
+            <input class="lineedit_outline" value="{{ app.download_link }}" type="text" name="download_link" id="download_link" autofocus="" style="width: 100%"><br><br>
             <table width="30%">
                     <tr>
                         <td><input type="checkbox" id="is_published" name="is_published" {% if app.is_published %}checked{% endif %}><span></span></td>
@@ -37,6 +41,8 @@
                 </table><br>
         <button class="mysh_btn light_btn" style="width: 30%">Save</button>
         </form>
+        <a href="/admin/delete?id={{ app.id }}" class="mysh_btn btn_default light_text" style="text-align: center; width: 30%">Delete app</a>
         </div>
+
     </div>
 {% endblock %}

@@ -16,19 +16,19 @@ def is_admin(cu):
 @admin.route('/components')
 def components():
     apps = App.query.order_by(App.id.desc())[:2]
-    return render_template('components.html', title='Components test', apps=apps)
+    return render_template('info/components.html', title='Components test', apps=apps)
 
 
-@login_required
 @admin.route('/')
+@login_required
 def admin_panel():
     if not is_admin(current_user):
         abort(403)
     return render_template('admin/adminbase.html', title='Admin')
 
 
-@login_required
 @admin.route('/users')
+@login_required
 def users():
     if not is_admin(current_user):
         abort(403)
@@ -36,8 +36,8 @@ def users():
     return render_template('admin/users.html', users_list=users_list, title='Users')
 
 
-@login_required
 @admin.route('/user')
+@login_required
 def get_user():
     if not is_admin(current_user):
         abort(403)
@@ -46,8 +46,8 @@ def get_user():
     return render_template('admin/getuser.html', user=user, title=user.name)
 
 
-@login_required
 @admin.route('/apps')
+@login_required
 def apps():
     if not is_admin(current_user):
         abort(403)
@@ -55,8 +55,8 @@ def apps():
     return render_template('admin/apps.html', apps_list=apps_list, title='Apps')
 
 
-@login_required
 @admin.route('/unreviewed')
+@login_required
 def unreviewed():
     if not is_admin(current_user):
         abort(403)
@@ -64,8 +64,9 @@ def unreviewed():
     return render_template('admin/unreviewed.html', apps_list=apps_list, title='Unreviewed')
 
 
-@login_required
+
 @admin.route('/app')
+@login_required
 def get_app():
     if not is_admin(current_user):
         abort(403)
@@ -73,16 +74,18 @@ def get_app():
     app = App.query.get(app_id)
     return render_template('admin/getapp.html', app=app, title='Pre-publish')
 
-@login_required
+
 @admin.route('/createapp')
+@login_required
 def create_app():
     if not is_admin(current_user):
         abort(403)
     return render_template('admin/createapp.html', title='Create an app')
 
+
 # POST-запросы
-@login_required
 @admin.route('/app', methods=['POST'])
+@login_required
 def post_app():
     if not is_admin(current_user):
         abort(403)
@@ -94,10 +97,13 @@ def post_app():
     app.name = form.get('name')
     app.description = form.get('description')
     app.publisher = form.get('publisher')
+    app.publisher_name = form.get('publisher_name')
     app.version = form.get('version')
+    app.download_link = form.get('download_link')
     app.weight = form.get('weight')
     app.tags = eval(form.get('tags'))
     app.screenshots = eval(form.get('screenshots'))
+    app.huge_icon = form.get('huge_icon')
     app.big_icon = form.get('big_icon')
     app.small_icon = form.get('small_icon')
     app.is_published = True if form.get('is_published') else False
@@ -107,8 +113,8 @@ def post_app():
     return render_template('admin/getapp.html', app=app)
 
 
-@login_required
 @admin.route('/user', methods=['POST'])
+@login_required
 def post_user():
     if not is_admin(current_user):
         abort(403)
@@ -129,8 +135,8 @@ def post_user():
     return render_template('admin/getuser.html', user=user)
 
 
-@login_required
 @admin.route('/createapp', methods=['POST'])
+@login_required
 def create_post_app():
     if not is_admin(current_user):
         abort(403)
@@ -153,4 +159,14 @@ def create_post_app():
     return render_template('admin/getapp.html', app=app)
 
 
-
+@admin.route('/delete')
+@login_required
+def delete_app():
+    if not is_admin(current_user):
+        abort(403)
+    app_id = request.args.get('id')
+    app = App.query.get(app_id)
+    if app:
+        db.session.delete(app)
+        db.session.commit()
+    return redirect('/admin')

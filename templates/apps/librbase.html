@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="center_content pb-2">
+        <div class="dark_card col-md-4 center_content" style="max-width: 13rem">
+            <a class="light_link waves-effect waves-light {% block lib %}{% endblock %}" href="/apps">My library</a>
+            <a class="light_link waves-effect waves-light {% block mya %}{% endblock %}" href="/apps/uploaded">My apps</a>
+        </div>
+    </div>
+    {% block libcontent %}
+    {% endblock %}
+{% endblock %}

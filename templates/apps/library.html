@@ -1,0 +1,15 @@
+{% extends 'apps/librbase.html' %}
+{% block lib %}chosed_link{% endblock %}
+{% block libcontent %}
+    <div class="center_content">
+        <div class="col-md-7 px-2 py-3" style="min-width: 70%;">
+        {% if not apps_list %}
+            <h2>Looks like someone has no apps!</h2>
+            <h6>Go to <a href="/">Home</a> and find something you like!</h6>
+        {% endif %}
+    {% for app in apps_list %}
+        {% include 'miniapps/_app_lib.html' %}<br>
+    {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -4,7 +4,7 @@
         <div class="dark_card">
             <a class="light_link {% block users_chose %}{% endblock %}" href="{{ url_for('admin.users') }}">Users</a>
             <a class="light_link {% block apps_chose %}{% endblock %}" href="{{ url_for('admin.apps') }}">Apps</a>
-            <a class="light_link {% block review_chose %}{% endblock %}">Unreviewed<b style="color: #EB7A72">(15)</b></a>
+            <a class="light_link {% block review_chose %}{% endblock %}" href="{{ url_for('admin.unreviewed') }}">Unreviewed</a>
         </div>
     </div>
     <div class="px-4">
@@ -12,4 +12,5 @@
     {% block admcontent %}
     {% endblock %}
     </div>
+    <br><br><br><a href="/admin/createapp" class="mysh_btn light_btn">Create an app</a>
 {% endblock %}

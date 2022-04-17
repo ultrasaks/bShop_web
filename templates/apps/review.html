@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="center_content py-4">
+        <div class="col-md-5 dark_card p-3 card_downflex" style="min-width: 30%">
+            <h1>A review to {{ appname }}</h1>
+        <form method="POST" action="/apps/review/{{ appid }}">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                        <b>{{ messages[0] }}</b><br><br>
+                {% endif %}
+            {% endwith %}
+            <label for="description" class="thin_text">Description</label>
+            <textarea class="lineedit_outline form100" type="text" name="description" id="description" rows="7" autofocus=""></textarea><br><br>
+
+            <i class="captcha">{{ captcha() }}</i>
+            <div class="py-2"><input class="lineedit_outline form100" type="text" placeholder="Captcha" name="captcha"></div>
+            <br><br>
+        <button class="mysh_btn light_btn" style="width: 30%">Post</button>
+        </form>
+        </div>
+    </div>
+{% endblock %}

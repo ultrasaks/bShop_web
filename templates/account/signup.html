@@ -16,10 +16,19 @@
             <label for="name" class="thin_text">Name</label>
         <input class="lineedit_outline" type="text" name="name" placeholder="Name" autofocus="" style="width: 100%"><br><br>
 
-            <label for="email" class="thin_text">Password</label>
-        <input class="lineedit_outline" type="password" name="password" placeholder="Password" style="width: 100%"><br><br>
+            <label for="password" class="thin_text">Password</label>
+        <input class="lineedit_outline" type="password" name="password" placeholder="Password" id="password" style="width: 100%"><br><br>
             <label for="email" class="thin_text">Repeat password</label>
-        <input class="lineedit_outline" type="password" placeholder="Repeat password" style="width: 100%"><br><br>
+        <input class="lineedit_outline" type="password" placeholder="Repeat password" name="rpassword" id="rpassword" style="width: 100%"><br><br>
+            <i class="captcha">{{ captcha() }}</i> <div class="py-2">
+            <input class="lineedit_outline" type="text" placeholder="Captcha" name="captcha" style="width: 100%"></div>
+            <br>
+        <table width="80%">
+            <tr>
+                <td><input type="checkbox" id="is_agree" name="is_agree"><span></span></td>
+                <td><label for="is_agree" class="py-0">I agree with <a href="/terms">Terms and conditions</a></label></td>
+            </tr>
+        </table><br>
 
         <button class="mysh_btn light_btn" style="width: 30%">Sign Up</button>&nbsp; or <a href="/login">log in</a>
         </form>

@@ -1,0 +1,38 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block apps_chose %}chosed_link{% endblock %}
+
+{% block admcontent %}
+    <div class="center_content py-4">
+        <div class="col-md-5 dark_card p-3 card_downflex" style="min-width: 30%">
+            <h1>Create App</h1>
+        <form method="POST" action="/admin/createapp">
+            <label for="name" class="thin_text">Name</label>
+            <input class="lineedit_outline" type="text" name="name" id="name" autofocus="" style="width: 100%"><br><br>
+            <label for="description" class="thin_text">Description</label>
+            <textarea class="lineedit_outline" type="text" name="description" id="description" rows="7" autofocus="" style="width: 100%"></textarea><br><br>
+            <label for="publisher" class="thin_text">Publisher</label>
+            <input class="lineedit_outline" type="text" name="publisher" id="publisher" autofocus="" style="width: 100%"><br><br>
+            <label for="version" class="thin_text">Version</label>
+            <input class="lineedit_outline" type="text" name="version" id="version" autofocus="" style="width: 100%"><br><br>
+            <label for="tags" class="thin_text">Tags</label>
+            <input class="lineedit_outline" type="text" name="tags" id="tags" autofocus="" style="width: 100%"><br><br>
+            <label for="weight" class="thin_text">Weight</label>
+            <input class="lineedit_outline" type="text" name="weight" id="weight" autofocus="" style="width: 100%"><br><br>
+            <label for="screenshots" class="thin_text">Screenshots</label>
+            <input class="lineedit_outline" type="text" name="screenshots" id="screenshots" autofocus="" style="width: 100%"><br><br>
+            <label for="big_icon" class="thin_text">Big icon</label>
+            <input class="lineedit_outline" type="text" name="big_icon" id="big_icon" autofocus="" style="width: 100%"><br><br>
+            <label for="small_icon" class="thin_text">Small icon</label>
+            <input class="lineedit_outline" type="text" name="small_icon" id="small_icon" autofocus="" style="width: 100%"><br><br>
+            <table width="30%">
+                    <tr>
+                        <td><input type="checkbox" id="is_published" name="is_published"><span></span></td>
+                        <td><label for="is_published" class="py-0">Published</label></td>
+                    </tr>
+                </table><br>
+        <button class="mysh_btn light_btn" style="width: 30%">Create</button>
+        </form>
+        </div>
+    </div>
+{% endblock %}

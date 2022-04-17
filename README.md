@@ -2,6 +2,8 @@
 <img src="https://ultrasaks.pythonanywhere.com/static/bshop.svg" alt="drawing" width="200"/>
 
 Веб-версия магазина bShop
+
+http://ultrasaks.pythonanywere.com
 ## Возможности магазина:
 * Скачивание приложений **(не готово)**
 * Загрузка собственных приложений **(не готово)**

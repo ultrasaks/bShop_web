@@ -13,6 +13,9 @@ http://ultrasaks.pythonanywere.com
 * Flask-Login
 * Flask-SQLAlchemy
 * Flask-Migrate
+* Flask-Sessionstore
+* Captcha
+* Flask-Session-Captcha
 
 ## Сборка:
 1. Установить библиотеки с помощью `pip install -r requirements.txt`

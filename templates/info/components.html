@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="px-5 py-3">
-    <h1>Components test</h1><br>
+<div class="px-5 py-3 pb-5">
+
+    <h1>Components test</h1>
+	<h5>и что ты тут забыл</h5><br>
     <button class="mysh_btn btn_default">Aliquam efficitur</button>
     <button class="mysh_btn light_btn">Lacinia enim</button>
     <button class="mysh_btn_outline light_outline">Sed luctus </button>
@@ -38,5 +40,35 @@
         <span><label for="sus"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a</label></span>
     </div>
 
+<br><br>
+<div class="dropdown">
+  <button class="mysh_btn btn_default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu dropdown_dark" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item item_dark" href="#">Action</a>
+    <a class="dropdown-item item_dark" href="#">Another action</a>
+    <a class="dropdown-item item_dark" href="#">Something else here</a>
+  </div>
 </div>
+
+<br><br><br>
+
+<div>
+    <h1>Carousel test</h1>
+    <div style="max-width: 100%; overflow-x: auto; display: flex; height: 171px /* SCROLL WIDTH -- 20px */">
+        {% for _ in range(45) %} <span class="dark_card card_hoverable" style="min-width: 150px; height: 150px"></span>&nbsp;</span>{% endfor %}
+    </div>
+
+</div>
+<br><br><br>
+{% for app in apps %}
+{% include 'miniapps/_app_front.html' %}<br>
+{% endfor %}
+<br><br><br>
+</div>
+
+
+
 {% endblock %}
+<script></script>

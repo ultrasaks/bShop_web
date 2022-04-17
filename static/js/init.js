@@ -6,4 +6,5 @@ Waves.attach('.light_outline', ['waves-effect', 'waves-light']);
 Waves.attach('.light_btn', ['waves-effect']);
 Waves.attach('.btn_default', ['waves-effect', 'waves-light']);
 Waves.attach('.card_hoverable', ['waves-effect', 'waves-light']);
+Waves.attach('.item_dark', ['waves-effect', 'waves-light']);
 Waves.init();

@@ -1,0 +1,14 @@
+{% extends "home/homebase.html" %}
+
+{% block new %}chosed_link{% endblock %}
+
+{% block homecontent %}
+    <div class="px-4">
+        <div style="max-width: 100%;">
+            {% for app in apps %}
+                {% include 'miniapps/_app_front.html' %}
+            {% endfor %}
+        </div>
+        <br>
+    </div>
+{% endblock %}

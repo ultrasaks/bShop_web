@@ -24,12 +24,19 @@ def signup_post():
     name = request.form.get('name')
     password = request.form.get('password')
     rpassword = request.form.get('rpassword')
+    is_agree = request.form.get('is_agree')
 
     if rpassword != password:
         flash("Passwords doesn't match")
         return redirect(url_for('auth.signup'))
     if email is None or name is None or password is None:
         flash("ты че самый умный")
+        return redirect(url_for('auth.signup'))
+    if is_agree is None:
+        flash('You must accept the terms and conditions to register')
+        return redirect(url_for('auth.signup'))
+    if len(password) < 6:
+        flash('Password must be at least 6 symbols long')
         return redirect(url_for('auth.signup'))
 
     user = User.query.filter_by(email=email).first()
@@ -58,21 +65,21 @@ def login_post():
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.'))
 
 
 @auth.route('/login')
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-    return render_template('login.html', title='Log in')
+    return render_template('account/login.html', title='Log in')
 
 
 @auth.route('/signup')
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-    return render_template('signup.html', title='Sign up')
+    return render_template('account/signup.html', title='Sign up')
 
 
 @auth.route('/logout')

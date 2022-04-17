@@ -39,7 +39,7 @@ class App(db.Model):
     weight = db.Column(db.String(20))
     tags = db.Column(db.JSON)
     screenshots = db.Column(db.JSON, default=[])
-    huge_icon = db.Column(db.String(200), server_default="http://jointprojects.tk/apps/discord/discord256.png")
+    huge_icon = db.Column(db.String(200))
     big_icon = db.Column(db.String(200))
     small_icon = db.Column(db.String(200))
     download_link = db.Column(db.String(3000))

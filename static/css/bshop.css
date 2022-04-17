@@ -90,6 +90,7 @@ a {
 .navbar_dark {
     background-color: #2B2C30;
     box-shadow: 0 1px 1px 0 #2B2C30;
+    max-height: 4rem;
 }
 .black_navlink, .black_navlink:hover, .black_navlink:focus{
     color: #151515;
@@ -102,7 +103,7 @@ a {
     height: 100%;
     vertical-align: middle;
     display: block;
-
+    max-height: 4rem;
 }
 .light_link{
     -webkit-transition-duration: 0.17s;
@@ -340,6 +341,7 @@ input[type=checkbox]:checked + span::after{
 .front_card {
     min-width: 150px;
     max-width:200px;
+    height: 230px;
 }
 .small_info {
     font-size: 70%;
@@ -408,4 +410,8 @@ input[type=checkbox]:checked + span::after{
     box-shadow: 0 1px 2px 0 #27282B;
     border-radius: 3px;
     padding: .6rem
+}
+.dark_fake_card {
+    background-color: #2D2E32;
+    box-shadow: 0 1px 2px 0 #2F3132;
 }

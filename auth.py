@@ -35,6 +35,9 @@ def signup_post():
     if is_agree is None:
         flash('You must accept the terms and conditions to register')
         return redirect(url_for('auth.signup'))
+    if len(password) < 6:
+        flash('Password must be at least 6 symbols long')
+        return redirect(url_for('auth.signup'))
 
     user = User.query.filter_by(email=email).first()
     if user:
@@ -62,7 +65,7 @@ def login_post():
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.'))
 
 
 @auth.route('/login')

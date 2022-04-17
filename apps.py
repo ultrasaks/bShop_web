@@ -73,7 +73,10 @@ def get_app(app_id):
     if not app.is_published:
         if current_user.is_anonymous or current_user.id != app.publisher:
             abort(403)
-    return render_template('apps/app.html', app=app, title=app.name)
+    reviews = []
+    for review in app.reviews:
+        reviews.append((User.query.get(review[0]).name, review[0], review[1]))
+    return render_template('apps/app.html', app=app, title=app.name, reviews=reviews)
 
 
 @apps.route('/add/<app_id>')
@@ -102,4 +105,35 @@ def add_to_library(app_id):
 @apps.route('/list/<type>')
 @login_required
 def applist(type):
-    return 0
+    return 'hello there'
+
+
+@apps.route('/review/<app_id>')
+@login_required
+def review_write(app_id):
+    app = App.query.filter_by(id=app_id).first()
+    if not app or not app.is_published:
+        return redirect('/')
+    return render_template('apps/review.html', title='Write a review', appname=app.name, appid=app.id)
+
+
+@apps.route('/review/<app_id>', methods=['POST'])
+@login_required
+def review_post(app_id):
+    description = request.form.get('description')
+    if description is None:
+        return redirect('/logout')
+    app = App.query.filter_by(id=app_id).first()
+    if not app or not app.is_published:
+        return redirect('/')
+
+    if not captcha.validate():
+        flash('Please pass the captcha first')
+        return redirect(f'/apps/review/{app_id}')
+    review = [current_user.id, description]
+    reviews = app.reviews.copy()
+    reviews.append(review)
+    app.reviews = reviews
+    db.session.add(app)
+    db.session.commit()
+    return redirect(f'/apps/app/{app_id}')

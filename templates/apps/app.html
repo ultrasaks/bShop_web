@@ -6,7 +6,7 @@
                 <div class="col-4" style="max-width: 20rem;"><img src="{{ app.huge_icon }}" class="card-img app_image"></div>
                 <div class="col-6">
                     <h1>{{ app.name }}</h1>
-                    <b>ver. {{ app.version }}</b><br><br>
+                    <b>ver. {{ app.version }} {% if not app.is_published %}(NOT PUBLISHED){% endif %}</b><br><br>
                     <div style="position: absolute;right: 0rem; bottom: 0">
                         {% if current_user.is_authenticated and app.is_published %}
                             {% if app.id not in current_user.library %}
@@ -29,8 +29,16 @@
             <h3>Description</h3>
             <div class="px-2 big_text">{% for text in app.broken() %}<span>{{ text }}</span><br>{% endfor %}</div><br>
         <h2>User reviews:</h2>
-            <div class="dark_card big_text" style="height: 100px">
-                <a class="light_link" href="#" style="width: 100%; height: 100%; text-align: center">Create a review</a>
+            <div class="big_text">
+            <center class="py-2">
+                <a class="mysh_btn light_text btn_default" href="/apps/review/{{ app.id }}" style="padding-left: 30%;padding-right: 30%;">Write a review</a><br><br>
+            </center>
+                {% for review in reviews %}
+                    <div class="fake_card dark_fake_card">
+                        <h3><a href="/profile/{{ review[1] }}">{{ review[0] }}</a>'s review</h3><br>
+                        {{ review[2] }}
+                    </div><br>
+                {% endfor %}
             </div>
-        </div><br>
+        </div><br><br>
 {% endblock %}

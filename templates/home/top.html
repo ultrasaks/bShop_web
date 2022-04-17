@@ -1,45 +1,27 @@
 {% extends "home/homebase.html" %}
 
-{% block home %}chosed_link{% endblock %}
+{% block trend %}chosed_link{% endblock %}
 
 {% block homecontent %}
     <div class="px-5">
-        <h1>New PC apps</h1>
-        <div class="px-2 p-1" style="overflow-x: auto; display: flex;max-width: 100%;">
-            {% for app in new_apps %}
-                {% include 'miniapps/_app_front.html' %}
-            {% endfor %}
-        {% include 'miniapps/_other.html' %}
-        </div>
-
-        <br><br>
-
         <h1>Top PC apps</h1>
         <div class="px-2 p-1" style="overflow-x: auto; display: flex;max-width: 100%;">
             {% for app in top_apps %}
                 {% include 'miniapps/_app_front.html' %}
             {% endfor %}
-        {% include 'miniapps/_other.html' %}
+        {% for link in ['/top/pc'] %}
+        {% include 'miniapps/_other.html' %}{% endfor %}
         </div>
 
         <br><br>
-
-        <h1>New android apps</h1>
-        <div class="px-2 p-1" style="overflow-x: auto; display: flex;max-width: 100%;">
-            {% for app in top_apps_android %}
-                {% include 'miniapps/_app_front.html' %}
-            {% endfor %}
-        {% include 'miniapps/_other.html' %}
-        </div>
-        <br><br>
-
 
         <h1>Top android apps</h1>
         <div class="px-2 p-1" style="overflow-x: auto; display: flex;max-width: 100%;">
             {% for app in top_apps_android %}
                 {% include 'miniapps/_app_front.html' %}
             {% endfor %}
-        {% include 'miniapps/_other.html' %}
+        {% for link in ['/top/pc'] %}
+        {% include 'miniapps/_other.html' %}{% endfor %}
         </div>
     </div>
 

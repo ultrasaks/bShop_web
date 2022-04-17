@@ -9,7 +9,8 @@
             {% for app in new_apps %}
                 {% include 'miniapps/_app_front.html' %}
             {% endfor %}
-        {% include 'miniapps/_other.html' %}
+        {% for link in ['/new/pc'] %}
+        {% include 'miniapps/_other.html' %}{% endfor %}
         </div>
 
         <br><br>
@@ -19,17 +20,19 @@
             {% for app in top_apps %}
                 {% include 'miniapps/_app_front.html' %}
             {% endfor %}
-        {% include 'miniapps/_other.html' %}
+        {% for link in ['/top/pc'] %}
+        {% include 'miniapps/_other.html' %}{% endfor %}
         </div>
 
         <br><br>
 
         <h1>New android apps</h1>
-        <div class="px-2 p-1" style="overflow-x: auto; display: flex;max-width: 100%;">
-            {% for app in top_apps_android %}
+        <div class="px-2 p-1" style="overflow-x: auto; display: flex;max-width: 100%;"> 
+            {% for app in new_apps_android %}
                 {% include 'miniapps/_app_front.html' %}
             {% endfor %}
-        {% include 'miniapps/_other.html' %}
+        {% for link in ['/new/android'] %}
+        {% include 'miniapps/_other.html' %}{% endfor %}
         </div>
         <br><br>
 
@@ -39,7 +42,8 @@
             {% for app in top_apps_android %}
                 {% include 'miniapps/_app_front.html' %}
             {% endfor %}
-        {% include 'miniapps/_other.html' %}
+        {% for link in ['/top/android'] %}
+        {% include 'miniapps/_other.html' %}{% endfor %}
         </div>
     </div>
 

@@ -5,38 +5,40 @@
 {% block homecontent %}
     <br>
     <center class="p-1">
-        <div class="col-md-7 fake_card align_left">
-            <form method="POST" action="/search">
-                <label for="query"></label>
-                <input type="text" class="lineedit_outline form90" id="query" name="query" placeholder="Type something here" {% if query %}value="{{ query }}{% endif %}">
-                <label style="padding-top: 1rem;"><a class="light_link" style="right: .1rem" href="javascript: search_resize();">
-                    <i class="ti ti-chevrons-down" id="up"></i>
-                    <i class="ti ti-chevrons-up link_hidden" id="down"></i>
-                </a></label>
-                <br>
-                <div class="search_hidden" id="search_settings">
+        <div class="col-md-7 align_left">
+            <div class="fake_card">
+                <form method="POST" action="/search">
+                    <label for="query"></label>
+                    <input type="text" class="lineedit_outline form90" id="query" name="query" placeholder="Type something here" {% if query %}value="{{ query }}{% endif %}">
+                    <label style="padding-top: 1rem;"><a class="light_link" style="right: .1rem" href="javascript: search_resize();">
+                        <i class="ti ti-chevrons-down {% if not pc or not android or sort != '0' and sort != None %}link_hidden{% endif %}" id="up"></i>
+                        <i class="ti ti-chevrons-up {% if pc and android and sort == None or sort == '0' %}link_hidden{% endif %}" id="down"></i>
+                    </a></label>
                     <br>
-                    <label for="tags" class="thin_text">Tags</label><br>
-                    <input type="text" class="lineedit_outline form100" id="tags" name="tags" {% if tags %}value="{{ tags }}"{% endif %}><br><br>
+                    <div class="search_hidden {% if not pc or not android or sort != '0' and sort != None %}resize{% endif %}" id="search_settings">
+                        <br>
+                        <label for="tags" class="thin_text">Tags</label><br>
+                        <input type="text" class="lineedit_outline form100" id="tags" name="tags" {% if tags %}value="{{ tags }}"{% endif %}><br><br>
 
-                    <input type="checkbox" id="pc" {% if pc %}checked{% endif %} name="pc"><span><label for="pc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC</label></span><br><br>
+                        <input type="checkbox" id="pc" {% if pc %}checked{% endif %} name="pc"><span><label for="pc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC</label></span><br><br>
 
-                    <input type="checkbox" id="android" {% if android %}checked{% endif %} name="android"><span><label for="android">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Android</label></span>
+                        <input type="checkbox" id="android" {% if android %}checked{% endif %} name="android"><span><label for="android">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Android</label></span>
+
+                        <br><br>
+
+                        <label for="sort">Sort by</label><br>
+                        <select class="mysh_select form100" name="sort" id="sort">
+                            <option value="0" {% if sort == '0' %}selected{% endif %}>Name</option>
+                            <option value="1" {% if sort == '1' %}selected{% endif %}>Popularity</option>
+                            <option value="2" {% if sort == '2' %}selected{% endif %}>Date published</option>
+                        </select>
+                    </div>
+
 
                     <br><br>
-
-                    <label for="sort">Sort by</label><br>
-                    <select class="mysh_select form100" name="sort" id="sort">
-                        <option value="0">Name</option>
-                        <option value="1">Popularity</option>
-                        <option value="2">Date published</option>
-                    </select>
-                </div>
-
-
-                <br><br>
-                <button type="submit" class="mysh_btn light_btn download_btn">Search</button>
-            </form>
+                    <button type="submit" class="mysh_btn light_btn download_btn">Search</button>
+                </form>
+            </div><br><br>
         {% for app in apps_list %}
             {% include 'miniapps/_app.html' %}<br>
         {% endfor %}

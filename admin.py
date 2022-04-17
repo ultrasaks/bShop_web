@@ -103,9 +103,11 @@ def post_app():
     app.weight = form.get('weight')
     app.tags = eval(form.get('tags'))
     app.screenshots = eval(form.get('screenshots'))
+    app.reviews = eval(form.get('reviews'))
     app.huge_icon = form.get('huge_icon')
     app.big_icon = form.get('big_icon')
     app.small_icon = form.get('small_icon')
+    app.platform = int(form.get('platform'))
     app.is_published = True if form.get('is_published') else False
     db.session.add(app)
     db.session.commit()

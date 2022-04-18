@@ -65,6 +65,9 @@ def login_post():
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
+    next = request.args.get('next')
+    if next is not None:
+        return redirect(next)
     return redirect(url_for('main.index'))
 
 
@@ -72,7 +75,10 @@ def login_post():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-    return render_template('account/login.html', title='Log in')
+    next = request.args.get('next')
+    if next is not None:
+        next = f'?next={next}'
+    return render_template('account/login.html', title='Log in', next=next)
 
 
 @auth.route('/signup')

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="center_content ">
     <div class="col-md-3 dark_card p-3" style="min-width: 30%">
-        <form method="POST" action="/signup" style="width: 100%">
+        <form method="POST" action="/signup" class="form100">
             <h3 class="title">Sign Up</h3><br>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -11,17 +11,17 @@
                 {% endif %}
             {% endwith %}
             <label for="email" class="thin_text">Email</label>
-        <input class="lineedit_outline" type="email" name="email" placeholder="Email" autofocus="" style="width: 100%">
+        <input class="lineedit_outline form100" type="email" name="email" placeholder="Email" autofocus="">
             <br><br>
             <label for="name" class="thin_text">Name</label>
-        <input class="lineedit_outline" type="text" name="name" placeholder="Name" autofocus="" style="width: 100%"><br><br>
+        <input class="lineedit_outline form100" type="text" name="name" placeholder="Name" autofocus=""><br><br>
 
             <label for="password" class="thin_text">Password</label>
-        <input class="lineedit_outline" type="password" name="password" placeholder="Password" id="password" style="width: 100%"><br><br>
+        <input class="lineedit_outline form100" type="password" name="password" placeholder="Password" id="password"><br><br>
             <label for="email" class="thin_text">Repeat password</label>
-        <input class="lineedit_outline" type="password" placeholder="Repeat password" name="rpassword" id="rpassword" style="width: 100%"><br><br>
+        <input class="lineedit_outline form100" type="password" placeholder="Repeat password" name="rpassword" id="rpassword"><br><br>
             <i class="captcha">{{ captcha() }}</i> <div class="py-2">
-            <input class="lineedit_outline" type="text" placeholder="Captcha" name="captcha" style="width: 100%"></div>
+            <input class="lineedit_outline form100" type="text" placeholder="Captcha" name="captcha"></div>
             <br>
         <table width="80%">
             <tr>

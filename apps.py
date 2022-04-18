@@ -127,12 +127,11 @@ def review_write(app_id):
 @login_required
 def review_post(app_id):
     description = request.form.get('description')
-    if description is None:
+    if not description:
         return redirect('/logout')
     app = App.query.filter_by(id=app_id).first()
     if not app or not app.is_published:
-        return redirect('/')
-
+        abort(404)
     if not captcha.validate():
         flash('Please pass the captcha first')
         return redirect(f'/apps/review/{app_id}')

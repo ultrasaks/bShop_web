@@ -8,13 +8,13 @@
             <h1>id{{ user.id }}</h1>
         <form method="POST" action="/admin/user?id={{ user.id }}">
             <label for="name" class="thin_text">Name</label>
-            <input class="lineedit_outline" value="{{ user.name }}" type="text" name="name" autofocus="" style="width: 100%"><br><br>
+            <input class="lineedit_outline form100" value="{{ user.name }}" type="text" name="name" autofocus="" ><br><br>
             <label for="email" class="thin_text">Email</label>
-            <input class="lineedit_outline" value="{{ user.email }}" type="email" name="email" autofocus="" style="width: 100%"><br><br>
+            <input class="lineedit_outline form100" value="{{ user.email }}" type="email" name="email" autofocus="" ><br><br>
             <label for="apps" class="thin_text">Apps</label>
-            <input class="lineedit_outline" value="{{ user.apps }}" type="text" name="apps" autofocus="" style="width: 100%"><br><br>
-            <label for="favourites" class="thin_text">Favourites</label>
-            <input class="lineedit_outline" value="{{ user.favourites }}" type="text" name="favourites" autofocus="" style="width: 100%"><br><br>
+            <input class="lineedit_outline form100" value="{{ user.apps }}" type="text" name="apps" autofocus="" ><br><br>
+            <label for="favourites" class="thin_text">Library</label>
+            <input class="lineedit_outline form100" value="{{ user.library }}" type="text" name="favourites" autofocus="" ><br><br>
             <table width="30%">
                     <tr>
                         <td><input type="checkbox" id="is_admin" name="is_admin" {% if user.is_admin %}checked{% endif %}><span></span></td>

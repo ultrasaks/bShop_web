@@ -1,7 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Welcome, {{ current_user.name }}!
-</h1>
+    <div class="center_content">
+        <div class="fake_card col-md-7 align_left p-2">
+            <span><h1>{{ user.name }}</h1>{% if user.is_admin %}<h3><b>ADMIN</b></h3>{% endif %}</span><br>
+            <h5>
+                Favourites: {{ user.len_lib() }}<br>
+                Apps published: {{ user.len_app() }}
+            </h5>
+        </div>
+    </div>
+    <br>
+    <center>
+        {% if apps %}
+            <h3>User apps:</h3>
+                <div class="col-md-7 align_left">
+                    {% for app in apps %}
+                        {% include 'miniapps/_app.html' %}<br>
+                    {% endfor %}
+                </div>
+        {% else %}
+            <h3>This user has no apps.</h3>
+        {% endif %}
+    </center>
 {% endblock %}

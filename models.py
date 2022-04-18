@@ -11,7 +11,6 @@ class User(UserMixin, db.Model):
     is_admin = db.Column(db.Boolean, default=False)
     is_banned = db.Column(db.Boolean, default=False)
     apps = db.Column(db.JSON, default=[])
-    favourites = db.Column(db.JSON, default=[])
     library = db.Column(db.JSON, default=[])
 
     def short_mail(self):
@@ -26,6 +25,9 @@ class User(UserMixin, db.Model):
 
     def len_app(self):
         return len(self.apps)
+
+    def len_lib(self):
+        return len(self.library)
 
 
 class App(db.Model):

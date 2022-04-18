@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, abort, redirect, url_for
 from . import db
 from flask_login import current_user, login_required
-from .models import App
+from .models import App, User
 from werkzeug.exceptions import HTTPException
 
 main = Blueprint('main', __name__)
@@ -9,35 +9,35 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    new_apps = App.query.order_by(App.id.desc()).filter_by(is_published=True).filter_by(platform=0)[:5]
-    top_apps = App.query.order_by(App.downloads.desc()).filter_by(is_published=True).filter_by(platform=0)[:5]
-    top_apps_android = App.query.order_by(App.downloads.desc()).filter_by(is_published=True).filter_by(platform=1)[:5]
-    new_apps_android = App.query.order_by(App.id.desc()).filter_by(is_published=True).filter_by(platform=1)[:5]
+    new_apps = App.query.order_by(App.id.desc()).filter_by(is_published=True, platform=0)[:5]
+    top_apps = App.query.order_by(App.downloads.desc()).filter_by(is_published=True, platform=0)[:5]
+    top_apps_android = App.query.order_by(App.downloads.desc()).filter_by(is_published=True, platform=1)[:5]
+    new_apps_android = App.query.order_by(App.id.desc()).filter_by(is_published=True, platform=1)[:5]
     return render_template('home/index.html', title='Home', new_apps=new_apps, top_apps=top_apps,
                            top_apps_android=top_apps_android, new_apps_android=new_apps_android)
 
 
 @main.route('/new')
 def new():
-    new_apps = App.query.order_by(App.id.desc()).filter_by(is_published=True).filter_by(platform=0)[:5]
-    new_apps_android = App.query.order_by(App.id.desc()).filter_by(is_published=True).filter_by(platform=1)[:5]
-    return render_template('home/new.html', new_apps=new_apps, new_apps_android=new_apps_android)
+    new_apps = App.query.order_by(App.id.desc()).filter_by(is_published=True, platform=0)[:5]
+    new_apps_android = App.query.order_by(App.id.desc()).filter_by(is_published=True, platform=1)[:5]
+    return render_template('home/new.html', new_apps=new_apps, new_apps_android=new_apps_android, title='New apps')
 
 
 @main.route('/trending')
 def top():
-    top_apps = App.query.order_by(App.downloads.desc()).filter_by(is_published=True).filter_by(platform=0)[:5]
-    top_apps_android = App.query.order_by(App.downloads.desc()).filter_by(is_published=True).filter_by(platform=1)[:5]
-    return render_template('home/top.html', top_apps=top_apps, top_apps_android=top_apps_android)
+    top_apps = App.query.order_by(App.downloads.desc()).filter_by(is_published=True, platform=0)[:5]
+    top_apps_android = App.query.order_by(App.downloads.desc()).filter_by(is_published=True, platform=1)[:5]
+    return render_template('home/top.html', top_apps=top_apps, top_apps_android=top_apps_android, title='Top apps')
 
 
 @main.route('/new/<platform>')
 def new_plat(platform):
     if platform == 'android':
-        apps = App.query.order_by(App.id.desc()).filter_by(is_published=True).filter_by(platform=1)
+        apps = App.query.order_by(App.id.desc()).filter_by(is_published=True, platform=1)
         platform = 'Android'
     else:
-        apps = App.query.order_by(App.id.desc()).filter_by(is_published=True).filter_by(platform=0)
+        apps = App.query.order_by(App.id.desc()).filter_by(is_published=True, platform=0)
         platform = 'PC'
 
     return render_template('home/new_plat.html', apps=apps, title=f'New {platform} apps')
@@ -46,10 +46,10 @@ def new_plat(platform):
 @main.route('/top/<platform>')
 def top_plat(platform):
     if platform == 'android':
-        apps = App.query.order_by(App.downloads.desc()).filter_by(is_published=True).filter_by(platform=1)
+        apps = App.query.order_by(App.downloads.desc()).filter_by(is_published=True, platform=1)
         platform = 'Android'
     else:
-        apps = App.query.order_by(App.downloads.desc()).filter_by(is_published=True).filter_by(platform=0)
+        apps = App.query.order_by(App.downloads.desc()).filter_by(is_published=True, platform=0)
         platform = 'PC'
 
     return render_template('home/top_plat.html', apps=apps, title=f'Trending {platform} apps')
@@ -69,7 +69,9 @@ def search():
     if query:
         apps_list = apps_list.filter(App.name.contains(query))
     if tags:
-        pass
+        tags = tags.split(', ')
+        for tag in tags:
+            apps_list = apps_list.filter(App.tags.contains(tag))
     if platform is not None:
         if platform and platform != 1:
             platform = 0
@@ -87,8 +89,10 @@ def search():
             apps_list = apps_list.order_by(App.downloads.desc())
         else:
             apps_list = apps_list.order_by(App.id.desc())
+    tags = ', '.join(tags)
 
-    return render_template('home/search.html', apps_list=apps_list, query=query, tags=tags, pc=pc, android=android, sort=sort)
+    return render_template('home/search.html', apps_list=apps_list, query=query, tags=tags, pc=pc,
+                           android=android, sort=sort, title='Search')
 
 
 @main.route('/search', methods=['POST'])
@@ -120,7 +124,17 @@ def search_POST():
 @main.route('/profile')
 @login_required
 def profile():
-    return render_template('account/profile.html', title='Profile')
+    return profile_other(current_user.id)
+
+
+@main.route('/profile/<user_id>')
+@login_required
+def profile_other(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if not user:
+        abort(404)
+    apps = App.query.filter_by(publisher=user.id, is_published=True).all()
+    return render_template('account/profile.html', title='Profile', user=user, apps=apps)
 
 
 @main.app_errorhandler(Exception)

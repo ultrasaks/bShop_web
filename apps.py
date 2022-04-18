@@ -53,10 +53,16 @@ def create_post_app():
     if platform != '0' and platform != '1':
         platform = '0'
     app.platform = int(platform)
+
+    user_apps = current_user.apps.copy()
+    user_apps.append(app.id)
+    current_user.apps = user_apps
+
     db.session.add(app)
+    db.session.add(current_user)
     db.session.commit()
 
-    return redirect(url_for('main.index'))
+    return redirect(url_for('apps.my_apps'))
 
 
 @apps.route('/createapp')

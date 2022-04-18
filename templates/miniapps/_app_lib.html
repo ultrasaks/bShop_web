@@ -8,7 +8,7 @@
         <a class="light_text" href="/apps/app/{{ app.id }}">
             <h2>{{ app.name }}</h2>
         </a>
-        {% for tag in app.tags %}<a class="small_tag" href="#">&nbsp;{{ tag }}</a>{% endfor %}
+        {% for tag in app.tags %}<a class="small_tag" href="/search?tags={{ tag }}">&nbsp;{{ tag }}</a>{% endfor %}
     </div>
     <div class="absolute_right"><a href="/apps/add/{{ app.id }}?return_to=/apps" class="light_text"><i class="ti ti-square-x x2"></i></a></div>
 </div>

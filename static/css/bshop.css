@@ -120,7 +120,7 @@ a {
 }
 .chosed_link {
 	background-color: rgba(0, 0, 0, .20);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 20%);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .20);
     border-radius: 3px;
 }
 .center_content {
@@ -300,6 +300,7 @@ input[type=checkbox]:checked + span::after{
 .big_text {
     border-radius: 2px;
     background-color: #27282B;
+    box-shadow: 0 1px 2px 0 #27282B;
     padding: 0.4rem;
 }
 .captcha img{

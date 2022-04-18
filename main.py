@@ -72,6 +72,7 @@ def search():
         tags = tags.split(', ')
         for tag in tags:
             apps_list = apps_list.filter(App.tags.contains(tag))
+        tags = ', '.join(tags)
     if platform is not None:
         if platform and platform != 1:
             platform = 0
@@ -89,7 +90,6 @@ def search():
             apps_list = apps_list.order_by(App.downloads.desc())
         else:
             apps_list = apps_list.order_by(App.id.desc())
-    tags = ', '.join(tags)
 
     return render_template('home/search.html', apps_list=apps_list, query=query, tags=tags, pc=pc,
                            android=android, sort=sort, title='Search')

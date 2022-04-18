@@ -26,7 +26,7 @@ def library():
 @apps.route('/uploaded')
 @login_required
 def my_apps():
-    apps_list = App.query.filter_by(publisher=current_user.id)
+    apps_list = App.query.filter_by(publisher=current_user.id).all()
     return render_template('apps/myapps.html', title='My apps', apps_list=apps_list)
 
 

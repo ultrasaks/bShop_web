@@ -20,14 +20,27 @@
     </div>
         <div class="col-md-9 px-3">
             <h2>About this app</h2>
-        <div class="dark_card big_text p-2 row">
+            <div class="dark_card big_text p-2 row">
             <div class="col-md"><h4>Downloads</h4>{{ app.downloads }}</div>&nbsp;
             <div class="col-md"><h4>Publisher</h4>{{ app.publisher_name }}</div>&nbsp;
             <div class="col-md"><h4>Weight</h4>{{ app.weight }}</div>&nbsp;
             <div class="col-md"><h4>Platform</h4>{% if not app.platform %}PC{% else %}Android{% endif %}</div>
         </div><br>
-            <h3>Description</h3>
+        <h3>Description</h3>
             <div class="px-2 big_text">{% for text in app.broken() %}<span>{{ text }}</span><br>{% endfor %}</div><br>
+        {% if app.screenshots  %}
+            <h3>Screenshots</h3>
+            <div class="dark_card big_text" style="overflow-x: auto">
+                {% for screen in app.screenshots %}
+                    <a href="{{ screen }}" target="_blank">
+                        <div class="pl-2 pr-2">
+                            <img src="{{ screen }}" alt="screen" style="max-width: 300px; max-height: 300px">
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         <h2>User reviews:</h2>
             <div class="big_text">
             <center class="py-2">

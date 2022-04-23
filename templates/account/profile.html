@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="center_content">
+    <center>
         <div class="fake_card col-md-7 align_left p-2">
             <span><h1>{{ user.name }}</h1>{% if user.is_admin %}<h3><b>ADMIN</b></h3>{% endif %}</span><br>
             <h5>
@@ -11,7 +11,6 @@
         </div>
     </div>
     <br>
-    <center>
         {% if apps %}
             <h3>User apps:</h3>
                 <div class="col-md-7 align_left">

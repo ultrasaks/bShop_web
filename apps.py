@@ -43,7 +43,7 @@ def create_post_app():
     app.publisher = current_user.id
     app.version = form.get('version')
     app.tags = form.get('tags').split(',')
-    app.screenshots = form.get('screenshots').split(',')
+    app.screenshots = form.get('screenshots').replace('javascript', '').split(',')
     app.huge_icon = form.get('huge_icon')
     app.big_icon = form.get('big_icon')
     app.small_icon = form.get('small_icon')

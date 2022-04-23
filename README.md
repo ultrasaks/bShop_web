@@ -1,12 +1,14 @@
 # bShop (web)
-<img src="https://ultrasaks.pythonanywhere.com/static/bshop.svg" alt="drawing" width="200"/>
+<img src="https://ultrasaks.pythonanywhere.com/static/icons/apple-touch-icon-180x180.png" alt="logo"/>
 
 Веб-версия магазина bShop
 
 http://ultrasaks.pythonanywhere.com
 ## Возможности магазина:
-* Скачивание приложений **(не готово)**
-* Загрузка собственных приложений **(не готово)**
+* Поиск приложений
+* Скачивание приложений
+* Загрузка собственных приложений
+исчерпывающе, правда?
 
 ## Использованные библиотеки:
 * Flask

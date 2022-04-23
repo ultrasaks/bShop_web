@@ -22,5 +22,5 @@ http://ultrasaks.pythonanywhere.com
 
 
 ## ЗАПУСК:
-1. `set FLASK_APP=__init__.py`
+1. `set FLASK_APP=__init__.py` либо `export FLASK_APP=__init__.py` если у вас линукс
 2. `flask run`

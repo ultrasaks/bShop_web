@@ -26,7 +26,7 @@
             <div class="col-md"><h4>Publisher</h4>{{ app.publisher_name }}</div>&nbsp;
             <div class="col-md"><h4>Weight</h4>{{ app.weight }}</div>&nbsp;
             <div class="col-md"><h4>Platform</h4>{% if not app.platform %}PC{% else %}Android{% endif %}</div>
-        </div><br>
+        </div></div><br>
         <h3>Description</h3>
             <div class="px-2 big_text">{% for text in app.broken() %}<span>{{ text }}</span><br>{% endfor %}</div><br>
         {% if app.screenshots  %}

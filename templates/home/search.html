@@ -11,11 +11,11 @@
                     <label for="query"></label>
                     <input type="text" class="lineedit_outline form90" id="query" name="query" placeholder="Type something here" {% if query %}value="{{ query }}{% endif %}">
                     <label style="padding-top: 1rem;"><a class="light_link" style="right: .1rem" href="javascript: search_resize();">
-                        <i class="ti ti-chevrons-down {% if not pc or not android or sort != '0' and sort != None %}link_hidden{% endif %}" id="up"></i>
-                        <i class="ti ti-chevrons-up {% if pc and android and sort == None or sort == '0' %}link_hidden{% endif %}" id="down"></i>
+                        <i class="ti ti-chevrons-down {% if not pc or not android or sort or tags != None or (sort != None and sort != '0') %}link_hidden{% endif %}" id="up"></i>
+                        <i class="ti ti-chevrons-up {% if pc and android and sort == None and not tags and (sort == None or sort == '0') %}link_hidden{% endif %}" id="down"></i>
                     </a></label>
                     <br>
-                    <div class="search_hidden {% if not pc or not android or sort != '0' and sort != None %}resize{% endif %}" id="search_settings">
+                    <div class="search_hidden {% if not pc or not android or sort or tags != None or (sort != None and sort != '0') %}resize{% endif %}" id="search_settings">
                         <br>
                         <label for="tags" class="thin_text">Tags</label><br>
                         <input type="text" class="lineedit_outline form100" id="tags" name="tags" {% if tags %}value="{{ tags }}"{% endif %}><br><br>

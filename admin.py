@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, abort
 from . import db
 from .models import App, User
 from flask_login import current_user, login_required
+from ast import literal_eval
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -101,9 +102,9 @@ def post_app():
     app.version = form.get('version')
     app.download_link = form.get('download_link')
     app.weight = form.get('weight')
-    app.tags = eval(form.get('tags'))
-    app.screenshots = eval(form.get('screenshots'))
-    app.reviews = eval(form.get('reviews'))
+    app.tags = literal_eval(form.get('tags'))
+    app.screenshots = literal_eval(form.get('screenshots'))
+    app.reviews = literal_eval(form.get('reviews'))
     app.huge_icon = form.get('huge_icon')
     app.big_icon = form.get('big_icon')
     app.small_icon = form.get('small_icon')
@@ -127,8 +128,8 @@ def post_user():
         form = request.form
         user.name = form.get('name')
         user.email = form.get('email')
-        user.apps = eval(form.get('apps'))
-        user.favourites = eval(form.get('favourites'))
+        user.apps = literal_eval(form.get('apps'))
+        user.library = literal_eval(form.get('favourites'))
         user.is_admin = True if form.get('is_admin') else False
         user.is_banned = True if form.get('is_banned') else False
         db.session.add(user)
@@ -150,8 +151,8 @@ def create_post_app():
     app.publisher = form.get('publisher')
     app.version = form.get('version')
     app.weight = form.get('weight')
-    app.tags = eval(form.get('tags'))
-    app.screenshots = eval(form.get('screenshots'))
+    app.tags = literal_eval(form.get('tags'))
+    app.screenshots = literal_eval(form.get('screenshots'))
     app.big_icon = form.get('big_icon')
     app.small_icon = form.get('small_icon')
     app.is_published = True if form.get('is_published') else False
